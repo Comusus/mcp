@@ -29,6 +29,7 @@ from .procurement_preferences_operations import (
     list_procurement_portal_preferences as _list_procurement_portal_preferences,
 )
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -122,6 +123,7 @@ NOTE: preference records may include procurement portal connection details; trea
 EXAMPLES
 - {"operation": "list_procurement_portal_preferences"}
 - {"operation": "get_procurement_portal_preference", "procurement_portal_preference_arn": "arn:aws:invoicing::123456789012:procurement-portal-preference/abc123"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def procurement_preferences(
     ctx: Context,

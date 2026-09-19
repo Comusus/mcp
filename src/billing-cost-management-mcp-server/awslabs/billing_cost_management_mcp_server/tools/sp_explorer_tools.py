@@ -22,6 +22,7 @@ from ..utilities.aws_service_base import (
 )
 from ..utilities.logging_utils import get_context_logger
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, List, Optional
 
 
@@ -60,6 +61,7 @@ Tags come back on each plan in describe_savings_plans, so there is no separate t
 
 IMPORTANT: the vocabulary here differs from Cost Explorer's, so values carried over from a Cost
 Explorer response or recommendation will be rejected. See the individual parameter descriptions.""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def sp_explorer(
     ctx: Context,

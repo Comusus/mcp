@@ -24,6 +24,7 @@ from ..utilities.aws_service_base import (
     parse_json,
 )
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, List, Optional
 
 
@@ -45,6 +46,7 @@ This tool provides insights into your AWS Free Tier usage across services:
    - Possible Dimensions values are: 'SERVICE'|'OPERATION'|'USAGE_TYPE'|'REGION'|'FREE_TIER_TYPE'|'DESCRIPTION'|'USAGE_PERCENTAGE'
    - Possible MatchOptions are: 'EQUALS'|'STARTS_WITH'|'ENDS_WITH'|'CONTAINS'|'GREATER_THAN_OR_EQUAL'
    """,
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def free_tier_usage(
     ctx: Context,

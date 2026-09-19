@@ -25,6 +25,7 @@ from ..utilities.aws_service_base import format_response
 from .credits_operations import get_credit_allocation_history as _get_credit_allocation_history
 from .credits_operations import get_credits as _get_credits
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -159,6 +160,7 @@ EXAMPLES
 - {"operation": "get_credit_allocation_history", "billing_period": "2026-06"}
 - {"operation": "get_credit_allocation_history", "start_date": "2026-06-01", "end_date": "2026-06-30"}
 - {"operation": "get_credit_allocation_history", "start_date": "2026-01-01", "end_date": "2026-06-30", "credit_id": "1234567890"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def credits(
     ctx: Context,

@@ -54,6 +54,7 @@ from .billing_conductor_operations import (
     list_resources_associated_to_custom_line_item as _list_resources_associated_to_cli,
 )
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -96,6 +97,7 @@ Pass the next_token back to this tool to continue fetching from where you left o
 
 Example 1: {"billing_period": "2025-01"}
 Example 2 (with filter): {"filters": "{\"Statuses\": [\"ACTIVE\"], \"BillingGroupTypes\": [\"STANDARD\"]}", "billing_period": "2025-01"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_billing_groups(
     ctx: Context,
@@ -159,6 +161,7 @@ Pass the next_token back to this tool to continue fetching from where you left o
 Example 1: {"billing_period": "2025-01"}
 Example 2 (monitored only): {"filters": "{\"Association\": \"MONITORED\"}", "billing_period": "2025-01"}
 Example 3 (by account IDs): {"filters": "{\"AccountIds\": [\"123456789012\", \"234567890123\"]}"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_account_associations(
     ctx: Context,
@@ -212,6 +215,7 @@ You can filter cost reports by:
 
 Example 1: {"billing_period": "2025-01"}
 Example 2 (with filter): {"filters": "{\"BillingGroupArns\": [\"arn:aws:billingconductor::123456789012:billinggroup/abc\"]}", "billing_period": "2025-01"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_billing_group_cost_reports(
     ctx: Context,
@@ -266,6 +270,7 @@ You can customize the report by:
 
 Example 1: {"arn": "arn:aws:billingconductor::123456789012:billinggroup/abc", "group_by": "[\"PRODUCT_NAME\"]"}
 Example 2: {"arn": "arn:aws:billingconductor::123456789012:billinggroup/abc", "group_by": "[\"PRODUCT_NAME\", \"BILLING_PERIOD\"]", "billing_period_range": "{\"InclusiveStartBillingPeriod\": \"2025-01\", \"ExclusiveEndBillingPeriod\": \"2025-07\"}"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def get_billing_group_cost_report(
     ctx: Context,
@@ -323,6 +328,7 @@ You can filter custom line items by:
 
 Example 1: {"billing_period": "2025-01"}
 Example 2 (with filter): {"filters": "{\"Names\": [\"MyCustomLineItem\"]}", "billing_period": "2025-01"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_custom_line_items(
     ctx: Context,
@@ -364,6 +370,7 @@ You can filter versions by:
 
 Example 1: {"arn": "arn:aws:billingconductor::123456789012:customlineitem/abcdef1234"}
 Example 2: {"arn": "...", "filters": "{\"BillingPeriodRange\": {\"StartBillingPeriod\": \"2025-01\", \"EndBillingPeriod\": \"2025-06\"}}"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_custom_line_item_versions(
     ctx: Context,
@@ -407,6 +414,7 @@ You can filter associated resources by:
 
 Example 1: {"arn": "arn:aws:billingconductor::123456789012:customlineitem/abcdef1234"}
 Example 2: {"arn": "...", "filters": "{\"Relationship\": \"CHILD\"}", "billing_period": "2025-01"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_resources_associated_to_custom_line_item(
     ctx: Context,
@@ -458,6 +466,7 @@ You can filter pricing rules by:
 
 Example 1: {"billing_period": "2025-01"}
 Example 2: {"filters": "{\"Arns\": [\"arn:aws:billingconductor::123456789012:pricingrule/abc\"]}", "billing_period": "2025-01"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_pricing_rules(
     ctx: Context,
@@ -501,6 +510,7 @@ You can filter pricing plans by:
 
 Example 1: {"billing_period": "2025-01"}
 Example 2: {"filters": "{\"Arns\": [\"arn:aws:billingconductor::123456789012:pricingplan/abc\"]}", "billing_period": "2025-01"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_pricing_plans(
     ctx: Context,
@@ -541,6 +551,7 @@ The tool returns information about:
 - A list containing pricing rules that are associated with the requested pricing plan
 
 Example: {"pricing_plan_arn": "arn:aws:billingconductor::123456789012:pricingplan/abc"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_pricing_rules_associated_to_pricing_plan(
     ctx: Context,
@@ -587,6 +598,7 @@ The tool returns information about:
 - The list containing pricing plans that are associated with the requested pricing rule.
 
 Example: {"pricing_rule_arn": "arn:aws:billingconductor::123456789012:pricingrule/abc"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_pricing_plans_associated_with_pricing_rule(
     ctx: Context,

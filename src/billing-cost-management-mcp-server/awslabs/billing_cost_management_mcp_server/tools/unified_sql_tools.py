@@ -24,6 +24,7 @@ import uuid
 from ..utilities.aws_service_base import handle_aws_error
 from ..utilities.sql_utils import execute_session_sql
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, List, Optional
 
 
@@ -48,6 +49,7 @@ Use this tool to:
 Common queries:
 - SELECT name FROM sqlite_master WHERE type='table' -- List all tables
 - SELECT * FROM [table_name] LIMIT 10 -- Preview table data""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def session_sql(
     ctx: Context,

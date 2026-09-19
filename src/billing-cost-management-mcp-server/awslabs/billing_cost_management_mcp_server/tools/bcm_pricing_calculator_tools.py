@@ -26,6 +26,7 @@ from ..utilities.aws_service_base import (
 )
 from datetime import datetime
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -205,6 +206,7 @@ USE THIS TOOL FOR:
    Required: operation="get_preferences"
    Returns: Retrieves the current preferences for AWS Billing and Cost Management Pricing Calculator.
 """,
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def bcm_pricing_calc(
     ctx: Context,

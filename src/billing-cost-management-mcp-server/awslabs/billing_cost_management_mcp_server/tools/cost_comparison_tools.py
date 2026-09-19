@@ -24,6 +24,7 @@ from ..utilities.aws_service_base import (
     parse_json,
 )
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -84,6 +85,7 @@ Note:
 - Time periods must start and end on the first day of a month, with a duration of exactly one month
 - The getCostComparisonDrivers operation automatically includes SERVICE and USAGE_TYPE dimensions
 - Data is available for the last 13 months, or up to 38 months if multi-year data is enabled""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def cost_comparison(
     ctx: Context,

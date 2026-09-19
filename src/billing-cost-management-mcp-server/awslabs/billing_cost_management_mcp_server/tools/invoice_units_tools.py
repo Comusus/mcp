@@ -31,6 +31,7 @@ from .invoice_units_operations import (
     list_invoice_units as _list_invoice_units,
 )
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, List, Optional
 
 
@@ -153,6 +154,7 @@ EXAMPLES
 - {"operation": "list_invoice_units", "invoice_receivers": ["123456789012"]}
 - {"operation": "get_invoice_unit", "invoice_unit_arn": "arn:aws:invoicing::123456789012:invoice-unit/abc123"}
 - {"operation": "batch_get_invoice_profile", "account_ids": ["123456789012", "210987654321"]}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def invoice_units(
     ctx: Context,

@@ -31,6 +31,7 @@ from ..utilities.aws_service_base import (
 from ..utilities.sql_utils import convert_response_if_needed
 from datetime import datetime
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, List, Optional
 
 
@@ -58,6 +59,7 @@ The API returns information about:
 With this information, you can determine which budgets have been exceeded or are projected to exceed their limits.
 
 The tool automatically retrieves the AWS account ID of the calling identity or uses the provided account_id.""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def budgets(
     ctx: Context,
@@ -117,6 +119,7 @@ An empty `actions` list is a real answer (a budget with no actions), distinct fr
 such as AccessDenied. For a budget's spend-vs-limit status use the `budgets` tool; for its alert
 thresholds use `budget-notifications`. The account ID is retrieved automatically or you may pass
 `account_id`.""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def budget_actions(
     ctx: Context,
@@ -174,6 +177,7 @@ responses are automatically offloaded to session SQL to save tokens.
 
 For a budget's spend-vs-limit status use the `budgets` tool; for its enforcement actions use
 `budget-actions`. The account ID is retrieved automatically or you may pass `account_id`.""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def budget_notifications(
     ctx: Context,

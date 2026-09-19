@@ -29,6 +29,7 @@ from .enterprise_support_operations import (
     list_linked_account_charges as _list_linked_account_charges,
 )
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -170,6 +171,7 @@ EXAMPLES
 - {"operation": "get_contract_details", "billing_month": "2026-06"}
 - {"operation": "list_linked_account_charges", "billing_month": "2026-06"}
 - {"operation": "list_linked_account_charges", "billing_month": "2026-06", "account_id": "111122223333"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def enterprise_support(
     ctx: Context,

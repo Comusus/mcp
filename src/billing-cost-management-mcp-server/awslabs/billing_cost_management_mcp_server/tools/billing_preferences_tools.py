@@ -22,6 +22,7 @@ from .billing_preferences_operations import (
     get_billing_preferences as _get_billing_preferences,
 )
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, List, Optional, Union
 
 
@@ -82,6 +83,7 @@ Example 2 (history): {"features": "RI_SHARING_HISTORY"}
 Example 3 (credit sharing): {"features": "CREDIT_SHARING"}
 Example 4 (one credit): {"features": "CREDIT_PREFERENCE_OPTIONS",
   "filters": "[{\\"name\\": \\"PREFERENCE_KEY\\", \\"value\\": [\\"credit/4242\\"]}]"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def get_billing_preferences(
     ctx: Context,

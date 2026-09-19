@@ -27,6 +27,7 @@ from ..utilities.logging_utils import get_context_logger
 from botocore.exceptions import ClientError
 from datetime import datetime, timedelta
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -54,6 +55,7 @@ Feedback status options:
 - YES: Anomalies marked as accurate
 - NO: Anomalies marked as inaccurate
 - PLANNED_ACTIVITY: Anomalies marked as planned activities""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def cost_anomaly(
     ctx: Context,

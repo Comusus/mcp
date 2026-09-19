@@ -22,6 +22,7 @@ from ..utilities.aws_service_base import (
 )
 from ..utilities.logging_utils import get_context_logger
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, List, Optional
 
 
@@ -74,6 +75,7 @@ one of the day's analyses on a scenario nobody asked for. A validation error nam
 it rejected rather than the parameter, so read the path in the message. An analysis also carries the
 configuration it was run with, so read AnalysisType from a result rather than assuming which
 scenario it modelled.""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def sp_purchase_analyzer(
     ctx: Context,

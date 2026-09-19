@@ -22,6 +22,7 @@ from ..utilities.aws_service_base import (
     paginate_aws_response,
 )
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -58,6 +59,7 @@ up to 1,000). Max 20 tags per UpdateCostAllocationTagsStatus request.
 Example 1 - List active user-defined tags: {"status": "Active", "tag_type": "UserDefined"}
 Example 2 - Check specific tag keys: {"tag_keys": "[\"Environment\", \"Team\"]"}
 Example 3 - List all tags with no filters: {}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_cost_allocation_tags(
     ctx: Context,
@@ -160,6 +162,7 @@ You can control pagination with:
 
 Example 1 - Get latest backfill request: {"max_results": 1}
 Example 2 - Get full backfill history: {"max_pages": 10}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_cost_allocation_tag_backfill_history(
     ctx: Context,

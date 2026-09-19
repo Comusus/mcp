@@ -26,6 +26,7 @@ from ..utilities.aws_service_base import (
     parse_json,
 )
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -66,6 +67,7 @@ IMPORTANT: `granularity` and `group_by` are mutually exclusive. If `group_by` is
 provided, `granularity` is ignored (the Cost Explorer API does not allow both for
 GetReservationCoverage or GetReservationUtilization). Provide one or the other,
 not both.""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def ri_performance(
     ctx: Context,

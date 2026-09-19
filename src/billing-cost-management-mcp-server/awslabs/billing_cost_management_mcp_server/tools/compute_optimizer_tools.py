@@ -28,6 +28,7 @@ from ..utilities.logging_utils import get_context_logger
 from ..utilities.time_utils import timestamp_to_utc_iso_string
 from botocore.exceptions import ClientError
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -76,6 +77,7 @@ For get_idle_recommendations, the `finding` field uses a distinct enum:
 - Unused: Resource is provisioned but sees no meaningful activity
 Its `filters` accept the filter names `Finding` (values: Idle, Unattached, Unused) and
 `ResourceType`.""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def compute_optimizer(
     ctx: Context,

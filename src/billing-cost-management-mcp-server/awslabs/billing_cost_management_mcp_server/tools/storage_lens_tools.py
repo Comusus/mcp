@@ -35,6 +35,7 @@ from ..utilities.constants import (
 from datetime import datetime
 from enum import Enum
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from sqlglot.errors import ParseError as SqlglotParseError
 from typing import Any, Dict, List, Optional, TypedDict
 from urllib.parse import urlparse
@@ -804,6 +805,9 @@ Example queries:
    WHERE metric_name IN ('TotalLifecycleRuleCount', 'StorageBytes')
    GROUP BY bucket_name
    ORDER BY lifecycle_rule_count ASC, total_bytes DESC""",
+    annotations=ToolAnnotations(
+        read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=True
+    ),
 )
 async def storage_lens_run_query(
     ctx: Context,

@@ -39,6 +39,7 @@ from ..utilities.constants import (
 )
 from datetime import datetime
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -67,6 +68,7 @@ When presenting the recommendation:
 3. Always include key information like resource details, savings amounts, and implementation steps
 4. Ensure all numeric values (costs, savings, metrics) are included
 5. Add natural language explanations to make the information more accessible""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def get_recommendation_details(ctx: Context, recommendation_id: str) -> Dict[str, Any]:
     """Get enhanced recommendation details with integrated data from multiple AWS services.

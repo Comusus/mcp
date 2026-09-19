@@ -27,6 +27,7 @@ from .aws_pricing_operations import (
     get_service_codes,
 )
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -68,6 +69,7 @@ ARGS:
 
 RETURNS:
         Dict containing the pricing information""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def aws_pricing(
     ctx: Context,

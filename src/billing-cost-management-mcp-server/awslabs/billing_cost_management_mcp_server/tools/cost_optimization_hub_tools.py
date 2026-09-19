@@ -50,6 +50,7 @@ from .cost_optimization_hub_helpers import (
 )
 from datetime import date, datetime, timedelta
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -271,6 +272,7 @@ Each recommendation includes:
 - The current state of the resource
 - The recommended state of the resource
 """,
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def cost_optimization_hub(
     ctx: Context,

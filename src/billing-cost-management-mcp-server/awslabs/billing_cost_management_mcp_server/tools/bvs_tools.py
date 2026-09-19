@@ -33,6 +33,7 @@ from .bvs_operations import (
     list_source_views_for_billing_view as _list_source_views_for_billing_view,
 )
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -67,6 +68,7 @@ The tool returns information about:
 - Creation, update, and view definition last updated timestamps
 
 Example: {"arn": "arn:aws:billing::123456789012:billingview/custom-view-abc123"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def get_billing_view(
     ctx: Context,
@@ -130,6 +132,7 @@ Example 4 (filter by name): {"names": "[{\"searchOption\": \"STARTS_WITH\", \"se
 Example 5 (with time range, date only): {"active_after_inclusive": "2024-01-01", "active_before_inclusive": "2024-01-31"}
 Example 6 (with time range, second precision): {"active_after_inclusive": "2024-01-01T00:00:00", "active_before_inclusive": "2024-01-31T23:59:59"}
 Example 7 (filter by ARNs): {"arns": "[\"arn:aws:billing::123456789012:billingview/custom-view-abc123\"]"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_billing_views(
     ctx: Context,
@@ -216,6 +219,7 @@ Pass the next_token back to this tool to continue fetching from where you left o
 Example 1: {"arn": "arn:aws:billing::123456789012:billingview/custom-view-abc123"}
 Example 2 (with max_results): {"arn": "arn:aws:billing::123456789012:billingview/custom-view-abc123", "max_results": 5}
 Example 3 (with next_token): {"arn": "arn:aws:billing::123456789012:billingview/custom-view-abc123", "next_token": "token123"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_source_views_for_billing_view(
     ctx: Context,
@@ -270,6 +274,7 @@ The tool returns:
 - The ARN of the billing view resource the policy is attached to
 
 Example: {"resource_arn": "arn:aws:billing::123456789012:billingview/custom-view-abc123"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def get_resource_policy(
     ctx: Context,

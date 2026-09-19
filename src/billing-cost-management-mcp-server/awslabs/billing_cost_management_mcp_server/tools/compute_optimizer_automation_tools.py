@@ -66,6 +66,7 @@ from .compute_optimizer_automation_operations import (
 from botocore import xform_name
 from fastmcp import Context, FastMCP
 from functools import lru_cache
+from mcp.types import ToolAnnotations
 from typing import Any, Awaitable, Callable, Dict, List, Optional, Tuple
 
 
@@ -232,6 +233,7 @@ Examples:
 - {"operation": "list_automation_events", "regions": ["us-east-1", "eu-west-1"]}
 - {"operation": "list_automation_events", "filters": "[{\"name\": \"EventStatus\", \"values\": [\"Complete\"]}]"}
 - {"operation": "list_automation_rule_preview", "rule_type": "AccountRule", "recommended_action_types": "[\"UpgradeEbsVolumeType\"]"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def compute_optimizer_automation(
     ctx: Context,

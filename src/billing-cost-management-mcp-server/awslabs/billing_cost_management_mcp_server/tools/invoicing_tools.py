@@ -24,6 +24,7 @@ every request parameter and response field.
 from ..utilities.aws_service_base import format_response
 from .invoicing_operations import list_invoice_summaries as _list_invoice_summaries
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -130,6 +131,7 @@ EXAMPLES
 - {"operation": "list_invoice_summaries", "billing_period": "2026-05", "invoicing_entity": "Amazon Web Services EMEA SARL"}
 - "the last 3 billing months" -> three calls, one billing_period each: "2026-06", then "2026-07", then "2026-08"
 - "invoices issued Jan 15 through Mar 10" -> three calls by issued date, split on month boundaries, end_date one day past Mar 10: 2026-01-15/2026-02-01, then 2026-02-01/2026-03-01, then 2026-03-01/2026-03-11""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def invoicing(
     ctx: Context,

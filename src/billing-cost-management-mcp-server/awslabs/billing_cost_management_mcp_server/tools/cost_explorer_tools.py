@@ -30,6 +30,7 @@ from .cost_explorer_operations import (
 )
 from botocore.exceptions import ClientError
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -150,6 +151,7 @@ Billing view types:
 - BILLING_TRANSFER_SHOWBACK: Available to Bill Transfer (bill receiver) account.
   AWS managed view showing pro forma showback/chargeback data (what Bill Source account owe their partner).
   Use for showback/chargeback reporting in billing transfer scenarios.""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def cost_explorer(
     ctx: Context,

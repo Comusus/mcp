@@ -27,6 +27,7 @@ from ..utilities.aws_service_base import (
 )
 from ..utilities.logging_utils import get_context_logger
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -50,6 +51,7 @@ IMPORTANT: For get_savings_plans_coverage, `granularity` and `group_by` are mutu
 exclusive. If `group_by` is provided, `granularity` is ignored (the Cost Explorer
 GetSavingsPlansCoverage API does not allow both). Valid `group_by` dimensions for
 coverage are SERVICE, REGION, or INSTANCE_FAMILY.""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def sp_performance(
     ctx: Context,

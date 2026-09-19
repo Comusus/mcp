@@ -27,6 +27,7 @@ from ..utilities.aws_service_base import (
     paginate_aws_response,
 )
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, Optional
 
 
@@ -68,6 +69,7 @@ Example 1 - Get current definition:
   {"cost_category_arn": "arn:aws:ce::123456789012:costcategory/abcd-1234"}
 Example 2 - Get historical version:
   {"cost_category_arn": "arn:aws:ce::123456789012:costcategory/abcd-1234", "effective_on": "2024-06-01T00:00:00Z"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def describe_cost_category_definition(
     ctx: Context,
@@ -130,6 +132,7 @@ Limits: 50 cost categories per management account, 500 rules per category (API),
 Example 1 - List all current categories: {}
 Example 2 - List categories active on a date: {"effective_on": "2024-06-01T00:00:00Z"}
 Example 3 - Filter by billing view support: {"supported_resource_types": "[\"billing:billingview\"]"}""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def list_cost_category_definitions(
     ctx: Context,

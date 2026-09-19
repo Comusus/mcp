@@ -23,6 +23,7 @@ from ..utilities.aws_service_base import (
 from ..utilities.logging_utils import get_context_logger
 from datetime import datetime
 from fastmcp import Context, FastMCP
+from mcp.types import ToolAnnotations
 from typing import Any, Dict, List, Optional
 
 
@@ -78,6 +79,7 @@ IMPORTANT: get_savings_plans_purchase_recommendation requires savings_plans_type
 payment_option, and lookback_period_in_days. None of them has a default — each changes the
 recommended commitment, so the caller must choose. Recommendations are precomputed and may be
 stale; the response carries the generation timestamp.""",
+    annotations=ToolAnnotations(read_only_hint=True, idempotent_hint=True, open_world_hint=True),
 )
 async def sp_recommendation(
     ctx: Context,
